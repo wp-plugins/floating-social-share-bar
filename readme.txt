@@ -15,6 +15,8 @@ Floating Social Share bar WordPress plugin let you add social media sharing butt
 
 Floating Social Share bar WordPress plugin let you add social media sharing buttons on your blog posts. This will help you to get more social media share as your social media sharing buttons will be displayed also when your readers are scrolling down your content. This plugin is integrated with all popular social media sharing buttons along with Pocket and LinkedIn.
 
+Credits: http://www.shoutmeloud.com
+
 == Installation ==
 
 This section describes how to install the plugin and get it working.
@@ -31,5 +33,6 @@ Create a support ticket at WordPress forum and I will take care of any issue.
 
 == Screenshots ==
 1. Plugin in action at post editor section.
+2. Plugin Settings page screenshot
 
 
