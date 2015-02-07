@@ -4,14 +4,14 @@
 * Plugin Name: Floating Share
 * Plugin URI: http://www.shoutmeloud.com/
 * Description: Floating Social Buttons Provide an easy way to add floating social sharing button.
-* Version: 1.0
+* Version: 1.1
 * Author: Harsh Agrawal		
 * Author URI: http://www.shoutmeloud.com/about
 * License: GPL2
 */
 
 
-#floaticons {
+#shoutme_floaticons {
 	background-color: #fff;
 	border: 1px solid #ddd;
 	border-radius: 3px;
@@ -22,22 +22,24 @@
 	top: 240px;
 	width: 87px;
 }
-#floaticons.fixed {
+
+
+#shoutme_floaticons.fixed {
 	position: absolute;
 	top: 0;
 }
-#floaticons .post-social {
+#shoutme_floaticons .shoutme-post-social {
 	margin-left: 0px!important;
 	margin-bottom: 0px !important;
 }
-#floaticons .social_share_count li {
+#shoutme_floaticons .Shoutme_social_share_count li {
 	margin-right: 0px;
 	margin-bottom: 10px;
 	width: 69px;
 	padding: 5px 4px;
 	border-radius: 5px;
 }
-#floaticons .social_share_count li a {
+#shoutme_floaticons .Shoutme_social_share_count li a {
 	background: inherit;
 	margin: 0 auto;
 	padding: 0;
@@ -48,70 +50,71 @@
 }
 .sharing_social_count {
 	padding-top: 3px;
-	padding-bottom: 4px;
+	 margin: 0 0 -19px;
+	padding-bottom: 16px;
 	float: none;
 }
-.post-social {
+.shoutme-post-social {
 	margin-left: 10px!important;
 }
-.social_share_count li {
+.Shoutme_social_share_count li {
 	text-align: center;
 	margin-right: 7px;
 }
-.post-social li {
+.shoutme-post-social li {
 	display: inline-block;
 	list-style: none;
 }
-.share_tweet {
+.share_shout_tweet {
 	background: #00ABF0;
 }
-.share_fb {
+.share_shout_fb {
 	background: #3b5998;
 }
-.share_plus {
+.share_shout_plus {
 	background: #D95232;
 }
-.share_pintrest {
+.share_shout_pintrest {
 	background: #cb2028;
 }
 .share_digg {
 	background: #1a5187;
 }
-.share_buffer {
+.share_shout_buffer {
 	background-image: url(../default/buffer.png);
 	background-position: 0 50%;
 	text-align: right !important;
 	background-color: #454545;
 	background-repeat: no-repeat;
 }
-.share_pocket {
+.share_shout_pocket {
 	background-image: url(../default/pocket-icons.png);
 	background-position: 7px 50%;
 	text-align: right !important;
 	background-color: #ee4055;
 	background-repeat: no-repeat !important;
 }
-#floaticons .social_share_count .share_pocket a {
+#shoutme_floaticons .Shoutme_social_share_count .share_shout_pocket a {
 }
-.share_buffer span {
+.share_shout_buffer span {
 	padding-left: 33px;
 }
-.share_pocket span {
+.share_shout_pocket span {
 	padding-left: 33px;
 }
-.share_stumble {
+.share_shout_stumble {
 	background: #E94B24;
 }
-.share_stumble span {
+.share_shout_stumble span {
 	margin: 0;
 }
-.share_reddit {
+.share_shout_reddit {
 	background: #326695;
 }
-.share_reddit span {
+.share_shout_reddit span {
 	margin: 0px 1px 0 0px;
 }
-.social_share_count li a {
+.Shoutme_social_share_count li a {
 	display: block;
 	width: 85px;
 	line-height: 23px;
@@ -120,45 +123,45 @@
 	background:none;
 	text-align:center;
 }
-.social_share_count li a:hover {
+.Shoutme_social_share_count li a:hover {
 	background:none;
 }
-.social_share_count li span {
+.Shoutme_social_share_count li span {
 	color: #fff;
 	font-size: 16px;
 	margin: 0 auto;
 }
-.icon {
+.shoutme-icon {
 	width: 50%;
 	float: left;
 	padding-left: 0px;
 }
-.icon:before {
+.shoutme-icon:before {
 	font-family: 'FontAwesome';
 	font-size: 16px;
 	font-style: normal;
 	padding-right: 10px;
 	color: #fff;
 }
-.icon-tweet:before {
+.shout-icon-tweet:before {
 	content: '\f099';
 }
-.icon-fb:before {
+.shout-icon-fb:before {
 	content: '\f09a';
 }
-.icon-plus:before {
+.shout-icon-plus:before {
 	content: '\f0d5';
 }
-.icon-stumble:before {
+.shout-icon-stumble:before {
 	content: '\f1a4';
 }
-.icon-reddit:before {
+.shout-icon-reddit:before {
 	content: '\f1a1';
 }
-.icon-pintrest:before {
+.shout-icon-pintrest:before {
 	content: '\f0d2';
 }
-.icon-digg:before {
+.shout-icon-digg:before {
 	content: '\f1a6';
 }
 @font-face {
@@ -3378,3 +3381,56 @@ filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
 	background-color:#CD2B0E!important;
 	border: 1px solid #CD2B0E!important;
 }
+
+
+
+/* Mobile */
+#shoutme_floaticons_mobile{
+overflow: hidden;
+width: 100%;
+display:none;
+}
+
+#shoutme_floaticons_mobile .shoutme-post-social_m {margin-left: 0px!important;margin-bottom: 0px !important;}
+#shoutme_floaticons_mobile .Shoutme_social_share_count_m li {margin-right: 0px;margin-bottom: 10px;width: 69px;padding: 5px 4px;border-radius: 5px;}
+#shoutme_floaticons_mobile .Shoutme_social_share_count_m li a {background: inherit;margin: 0 auto;padding: 0;width: auto;}
+.sharing_social_count_m ul {margin-left:0px !important;}
+.sharing_social_count_m {float: left;}
+.shoutme-post-social_m {margin-left: 10px!important;}
+.Shoutme_social_share_count_m li {text-align: center;margin-right: 7px;}
+.shoutme-post-social_m li {display: inline-block;list-style: none;}
+.share_shout_m_tweet {background: #00ABF0;}
+.share_shout_m_fb {background: #3b5998;}
+.share_shout_m_plus {background: #D95232;}
+.share_shout_m_pintrest {background: #cb2028;}
+.share_digg {background: #1a5187;}
+.share_shout_m_buffer {background-image: url(../default/buffer.png);background-position: 0 50%;text-align: right !important;background-color: #454545;background-repeat: no-repeat;}
+.share_shout_m_pocket {background-image: url(../default/pocket-icons.png);background-position: 7px 50%;text-align: right !important;background-color: #ee4055;background-repeat: no-repeat !important;}
+#shoutme_floaticons_mobile .Shoutme_social_share_count_m .share_shout_m_pocket a {}
+.share_shout_m_buffer span {padding-left: 33px;}
+.share_shout_m_pocket span {padding-left: 33px;}
+.share_shout_m_stumble {background: #E94B24;}
+.share_shout_m_stumble span {margin: 0;}
+.share_shout_m_reddit {background: #326695;}
+.share_shout_m_reddit span {margin: 0px 1px 0 0px;}
+.Shoutme_social_share_count_m li a {display: block;width: 85px;line-height: 23px;padding-top: 2px;padding-bottom: 2px;background:none;text-align:center;}
+.Shoutme_social_share_count_m li a:hover {background:none;}
+.Shoutme_social_share_count_m li span {color: #fff;font-size: 16px;margin: 0 auto;}
+.shoutme-icon_m {width: 50%;float: left;padding-left: 0px;}
+.shoutme-icon_m:before {font-family: 'FontAwesome';font-size: 16px;font-style: normal;padding-right: 10px;color: #fff;}
+.shout-icon-m-tweet:before {content: '\f099';}
+.shout-icon-m-fb:before {content: '\f09a';}
+.shout-icon-m-plus:before {content: '\f0d5';}
+.shout-icon-m-stumble:before {content: '\f1a4';}
+.shout-icon-m-reddit:before {content: '\f1a1';}
+.shout-icon-m-pintrest:before {content: '\f0d2';}
+.shout-icon-m-digg:before {content: '\f1a6';}
+.socialicons a i {border: 2px solid #fc3;border-radius: 50%;color: #ffffff;font-size: 26px;margin-right: 10px;padding: 8px;transition: transform 0.1s ease-out 0s, background 0.2s ease 0s;}
+.social_icon {display: inline-block;transform: translateZ(0px);box-shadow: 0px 0px 1px transparent;}
+.socialicons .fa-facebook:hover {background: none repeat scroll 0% 0% #3B5998;border: 1px solid #3B5998 !important;}
+.socialicons .fa-twitter:hover {background: none repeat scroll 0% 0% #00ABF0;border: 1px solid #00ABF0 !important;}
+.socialicons .fa-youtube:hover {background: none repeat scroll 0% 0% #C3181E;border: 1px solid #C3181E !important;}
+.socialicons .fa-google-plus:hover {background: none repeat scroll 0% 0% #D95232;border: 1px solid #D95232 !important;}
+.socialicons .fa-slideshare:hover {background-color:#CD2B0E!important;border: 1px solid #CD2B0E!important;}
+@media screen and (max-width:683px){ #shoutme_floaticons { display:none; } }
+@media screen and (max-width:683px){ #shoutme_floaticons_mobile { display:block; } }
