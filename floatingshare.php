@@ -72,10 +72,12 @@ function floating_social_buttons_option()
                   <li class="list-group-item">
                     <input id="plugin_settings[pocket]" name="plugin_settings[pocket]" type="checkbox" value="1" <?php checked( '1', ($options['pocket']) ? $options['pocket'] : '' ); ?> />
                     Pocket</li>
-                     <li class="list-group-item list-group-item-info"><strong>Twitter ID:</strong></li>
+                  <li class="list-group-item list-group-item-info"><strong>Twitter ID:</strong></li>
                   <li class="list-group-item">
-                    <input id="plugin_settings[twitter_name]" name="plugin_settings[twitter_name]" type="text" value="<?php echo ($options['twitter_name']) ? $options['twitter_name'] : "";?>" /> <br /><br />Note: Paste the ID Without ' @ ' Symbol
-                    </li>  
+                    <input id="plugin_settings[twitter_name]" name="plugin_settings[twitter_name]" type="text" value="<?php echo ($options['twitter_name']) ? $options['twitter_name'] : "";?>" />
+                    <br />
+                    <br />
+                    Note: Paste the ID Without ' @ ' Symbol </li>
                 </ul>
                 <ul class="list-group">
                   <li class="list-group-item list-group-item-info"><strong>Display Setting :</strong></li>
@@ -85,13 +87,10 @@ function floating_social_buttons_option()
                   <li class="list-group-item">Position From Left or Right :
                     <input id="plugin_settings[position_left]" name="plugin_settings[position_left]" type="text" value="<?php echo ($options['position_left']) ? $options['position_left'] : '100'; ?>" />
                     px</li>
-                    <li>NOTE : Dont add px in display settings</li>
-                  
+                  <li>NOTE : Dont add px in display settings</li>
                   <li class="list-group-item">Mobile view:
                     <input id="plugin_settings[mstatus]" name="plugin_settings[mstatus]" type="checkbox" value="1" <?php checked( '1', ($options['mstatus']) ? $options['mstatus'] : '' ); ?> />
                     Active</li>
-                      
-                  
                 </ul>
                 <input type="submit" name="savesetting" class="btn btn-primary" value="Save Setting"/>
               </form>
@@ -110,15 +109,8 @@ class="btn btn-primary" target="_blank">Read more</a> </div>
           <div class="postbox">
             <h3><span>Follow on Social Network</span></h3>
             <div class="inside">
-<div class="shoutme-socialicons"> 
-<a href="http://www.facebook.com/Shoutmeloudpro" class="shoutme-social_icon facebook" target="_blank"><i style="padding: 8px 15px;" class="animatesocialicon1 fadeInLeft fa fa-facebook" id="animated-example"></i></a> 
-<a href="https://twitter.com/shoutmeloud" class="shoutme-social_icon twitter" target="_blank"><i  class="animatesocialicon2 fadeInLeft fa fa-twitter" id="animated-example"></i></a> 
-<a href="https://plus.google.com/+Shoutmeloud/posts
-" class="shoutme-social_icon google" target="_blank"><i  class="animatesocialicon3 fadeInLeft fa fa-google-plus" id="animated-example"></i></a> 
-<a href="https://www.youtube.com/user/denharsh" class="shoutme-social_icon youtube" target="_blank"><i  class="animatesocialicon5 fadeInLeft fa fa-youtube" id="animated-example"></i></a> 
-<a href="http://www.slideshare.net/denharsh" class="shoutme-social_icon slideshare" target="_blank"><i  class="animatesocialicon6 fadeInLeft fa fa-slideshare" id="animated-example"></i></a><a href="http://in.linkedin.com/in/denharsh" class="shoutme-social_icon linkedin" target="_blank"><i  class="animatesocialicon6 fadeInLeft fa fa-linkedin" id="animated-example"></i></a> 
- 
-</div>
+              <div class="shoutme-socialicons"> <a href="http://www.facebook.com/Shoutmeloudpro" class="shoutme-social_icon facebook" target="_blank"><i style="padding: 8px 15px;" class="animatesocialicon1 fadeInLeft fa fa-facebook" id="animated-example"></i></a> <a href="https://twitter.com/shoutmeloud" class="shoutme-social_icon twitter" target="_blank"><i  class="animatesocialicon2 fadeInLeft fa fa-twitter" id="animated-example"></i></a> <a href="https://plus.google.com/+Shoutmeloud/posts
+" class="shoutme-social_icon google" target="_blank"><i  class="animatesocialicon3 fadeInLeft fa fa-google-plus" id="animated-example"></i></a> <a href="https://www.youtube.com/user/denharsh" class="shoutme-social_icon youtube" target="_blank"><i  class="animatesocialicon5 fadeInLeft fa fa-youtube" id="animated-example"></i></a> <a href="http://www.slideshare.net/denharsh" class="shoutme-social_icon slideshare" target="_blank"><i  class="animatesocialicon6 fadeInLeft fa fa-slideshare" id="animated-example"></i></a><a href="http://in.linkedin.com/in/denharsh" class="shoutme-social_icon linkedin" target="_blank"><i  class="animatesocialicon6 fadeInLeft fa fa-linkedin" id="animated-example"></i></a> </div>
             </div>
           </div>
         </div>
@@ -162,7 +154,6 @@ class="btn btn-primary" target="_blank">Read more</a> </div>
 
 
     </style>
-    
     <br class="clear">
   </div>
 </div>
@@ -181,7 +172,85 @@ wp_enqueue_script( 'floaticons' );
 }
 
 add_action('wp_footer','floating_social_buttons_admin_enqueue_scripts');
-add_action("the_content", "floatsharingpost");
+add_action("wp_footer", "floatsharingpost", 20);
+
+$options = get_option( 'plugin_settings' );	
+if($options['mstatus'] == '1') {  
+add_filter("the_content", "floatsharingpostmobile");
+}
+
+function floatsharingpostmobile($content)
+{
+
+$options = get_option( 'plugin_settings' );	
+if(is_single()){
+if($options['mstatus'] == '1') {
+
+$content .= '<div id="shoutme_floaticons_mobile">
+  <div class="sharing group sharing_social_count_m">
+    <ul class="shoutme-post-social_m Shoutme_social_share_count_m">';
+if($options['facebook'] == '1'){  
+      $content .= '<li class="share_shout_m_fb"> <a href="http://www.facebook.com/sharer.php?u='.get_the_permalink().'&amp;t='.htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8').'" target="_blank"> <i class="shout-icon-m-fb shoutme-icon_m"></i> <span>';
+       
+$obj=new shoutme_floatingshare(get_permalink( $post->ID ));  
+$content .= $obj->get_shout_fb();
+       $content .= ' </span> </a> </li>';
+      } 
+if($options['gplus'] == '1'){  
+      $content .= '<li class="share_shout_m_plus"> <a href="https://plus.google.com/share?url='.get_the_permalink().'" target="_blank" title="Click to share"> <i class="shout-icon-m-plus shoutme-icon_m"></i> <span>';
+$obj=new shoutme_floatingshare(get_permalink( $post->ID ));  
+$content .= $obj->get_shout_plusones();
+$content .= '</span> </a> </li>';
+} 
+if($options['stumbleupon'] == '1'){  
+$content .= '<li class="share_shout_m_stumble"> <a target="_blank" href="http://www.stumbleupon.com/submit?url='.get_the_permalink().'"> <i class="icon shout-icon-m-stumble fa fa-stumbleupon"></i> <span>';
+   $obj = new shoutme_floatingshare(get_permalink( $post->ID ));  
+$content .= $obj->get_shout_stumble();
+$content .= '</span> </a> </li>';
+} 
+if($options['reddit'] == '1'){  
+$content .= '<li class="share_shout_m_reddit"> <a target="_blank" href="http://www.reddit.com/submit?url='.get_the_permalink().'&amp;title='.htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8').'"> <i class="shout-icon-m-reddit shoutme-icon_m"></i> <span>';
+@$obj=new shoutme_floatingshare(get_permalink( @$post->ID ));  
+$content .= @$obj->get_shout_reddit();
+$content .= '</span> </a> </li>';
+      }
+if($options['tweet'] == '1'){  
+$content .= '<li class="share_shout_m_tweet"> <a target="_blank" href="http://twitter.com/share?text='.htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8').'&amp;url='.get_the_permalink().'&amp;via='.$options['twitter_name'].'"> <i class="shout-icon-m-tweet shoutme-icon_m"></i> <span>';
+$obj = new shoutme_floatingshare(get_permalink( $post->ID ));  
+$content .= $obj->get_shout_tweets();
+$content .= '</span> </a> </li>';
+ }
+if($options['buffer'] == '1'){  
+$content .= '<li class="share_shout_m_buffer"> <a target="_blank" href="http://bufferapp.com/add?url='.get_the_permalink().'&amp;text='.htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8').'&amp;utm_source='.get_the_permalink().'&amp;utm_medium='.get_the_permalink().'&amp;utm_campaign=buffer&amp;source=button"><span>';
+$obj = new shoutme_floatingshare(get_permalink( $post->ID ));  
+$content .= $obj->get_shout_buffer();
+$content .= '</span> </a> </li>';
+}
+if($options['pocket'] == '1'){ 
+$content .= '<li class="share_shout_m_pocket"> <a target="_blank" href="https://getpocket.com/save?title='.get_the_title().'&amp;url='.the_permalink().'"><span>';
+$obj = new shoutme_floatingshare(get_permalink( $post->ID ));  
+$content .= $obj->get_shout_pocket();
+$content .= '</span> </a> </li>';
+      }
+if($options['pinterest'] == '1'){  
+$content .= '<li class="share_shout_m_pintrest">';
+if ( '' != get_the_post_thumbnail( $post->ID ) ) {
+		$pinterestimage = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+		$pinImage = $pinterestimage[0];
+} else {
+		$pinImage = plugins_url( '/default/default.png' , __FILE__ );
+}$content .= '<a target="_blank" href="http://pinterest.com/pin/create/bookmarklet/?url='.urlencode(get_permalink( $post->ID )).'&amp;media='. $pinImage .'&amp;description='. htmlspecialchars(urlencode(html_entity_decode(get_the_title( $post->ID ), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8').'"> <i class="shout-icon-m-pintrest shoutme-icon_m"></i> <span>';
+		$obj=new shoutme_floatingshare(get_permalink( $post->ID )); 
+		$content .= $obj->get_shout_pinterest(); 
+$content .= '</span> </a> </li>';
+      } 
+$content .= '</ul>
+  </div>
+</div>';
+return $content;  
+}
+}
+}
 
 
 function floatsharingpost()
@@ -189,100 +258,6 @@ function floatsharingpost()
 $options = get_option( 'plugin_settings' );	
 if(is_single()){
 ?>
-<?php  if($options['mstatus'] == '1') { ?>
-
-<div id="shoutme_floaticons_mobile">
-  <div class="sharing group sharing_social_count_m">
-    <ul class="shoutme-post-social_m Shoutme_social_share_count_m">
-<?php 
-if($options['facebook'] == '1'){  ?>
-      <li class="share_shout_m_fb"> <a href="http://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&amp;t=<?php echo htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8'); ?>" target="_blank"> <i class="shout-icon-m-fb shoutme-icon_m"></i> <span>
-        <?php 
-$obj=new shoutme_floatingshare(get_permalink( $post->ID ));  
-echo $obj->get_shout_fb();
-?>
-        </span> </a> </li>
-      <?php } 
-if($options['gplus'] == '1'){  ?>
-      <li class="share_shout_m_plus"> <a href="https://plus.google.com/share?url=<?php the_permalink(); ?>" target="_blank" title="Click to share"> <i class="shout-icon-m-plus shoutme-icon_m"></i> <span>
-        <?php 
-$obj=new shoutme_floatingshare(get_permalink( $post->ID ));  
-echo $obj->get_shout_plusones();
-?>
-        </span> </a> </li>
-      <?php } 
-if($options['stumbleupon'] == '1'){  ?>
-      <li class="share_shout_m_stumble"> <a target="_blank" href="http://www.stumbleupon.com/submit?url=<?php the_permalink(); ?>"> <i class="icon shout-icon-m-stumble"></i> <span>
-        <?php 
-$obj = new shoutme_floatingshare(get_permalink( $post->ID ));  
-echo $obj->get_shout_stumble();
-?>
-        </span> </a> </li>
-      <?php } 
-if($options['reddit'] == '1'){  ?>
-      <li class="share_shout_m_reddit"> <a target="_blank" href="http://www.reddit.com/submit?url=<?php the_permalink(); ?>&amp;title=<?php echo htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8'); ?>"> <i class="shout-icon-m-reddit shoutme-icon_m"></i> <span>
-        <?php 
-@$obj=new shoutme_floatingshare(get_permalink( @$post->ID ));  
-echo @$obj->get_shout_reddit();
-?>
-        </span> </a> </li>
-      <?php }
-if($options['tweet'] == '1'){  ?>
-      <li class="share_shout_m_tweet"> 
-      <a target="_blank" href="http://twitter.com/share?text=<?php echo htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8'); ?>&amp;url=<?php the_permalink(); ?>&amp;via=<?php echo ($options['twitter_name']) ? $options['twitter_name'] : ""; ?>"> <i class="shout-icon-m-tweet shoutme-icon_m"></i> <span>
-        <?php 
-$obj = new shoutme_floatingshare(get_permalink( $post->ID ));  
-echo $obj->get_shout_tweets();
-?>
-        </span> </a> </li>
-      <?php }
-if($options['buffer'] == '1'){  ?>
-      <li class="share_shout_m_buffer"> 
-      
-      <a target="_blank" href="http://bufferapp.com/add?url=<?php the_permalink(); ?>&amp;text=<?php echo htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8'); ?>&amp;utm_source=<?php the_permalink(); ?>&amp;utm_medium=<?php the_permalink(); ?>&amp;utm_campaign=buffer&amp;source=button">
-      <!--<a href="http://bufferapp.com/add" target="_blank" class="buffer-add-button" data-count="horizontal" >-->
-   <span>
-        <?php 
-$obj = new shoutme_floatingshare(get_permalink( $post->ID ));  
-echo $obj->get_shout_buffer();
-?>
-        </span> </a>
-    </li>
-      <?php }
-if($options['pocket'] == '1'){  ?>
-      <li class="share_shout_m_pocket"> 
-      
-      <a target="_blank" href="https://getpocket.com/save?title=<?php echo get_the_title(); ?>&amp;url=<?php the_permalink(); ?>">
-      <!--<a href="http://bufferapp.com/add" target="_blank" class="buffer-add-button" data-count="horizontal" >-->
-   <span>
-        <?php 
-$obj = new shoutme_floatingshare(get_permalink( $post->ID ));  
-echo $obj->get_shout_pocket();
-?>
-        </span> </a>
-     
-    </li>
-      <?php }
-if($options['pinterest'] == '1'){  ?>
-      <li class="share_shout_m_pintrest">
-        <?php 
-if ( '' != get_the_post_thumbnail( $post->ID ) ) {
-		$pinterestimage = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-		$pinImage = $pinterestimage[0];
-} else {
-		$pinImage = plugins_url( '/default/default.png' , __FILE__ );
-}?>
-        <a target="_blank" href="http://pinterest.com/pin/create/bookmarklet/?url=<?php echo urlencode(get_permalink( $post->ID )).'&amp;media='. $pinImage .'&amp;description='. htmlspecialchars(urlencode(html_entity_decode(get_the_title( $post->ID ), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8');?>"> <i class="shout-icon-m-pintrest shoutme-icon_m"></i> <span>
-        <?php 
-		$obj=new shoutme_floatingshare(get_permalink( $post->ID )); 
-		echo $obj->get_shout_pinterest(); ?>
-        </span> </a> </li>
-      <?php } ?>
-    </ul>
-  </div>
-</div>
-
-<?php  } ?>
 
 <div id="shoutme_floaticons" style="top: <?php echo ($options['position_top']) ? $options['position_top'] : ''; ?>px;left: <?php echo ($options['position_left']) ? $options['position_left'] : ''; ?>px;">
   <div class="sharing group sharing_social_count">
@@ -320,8 +295,7 @@ echo @$obj->get_shout_reddit();
         </span> </a> </li>
       <?php }
 if($options['tweet'] == '1'){  ?>
-      <li class="share_shout_tweet"> 
-      <a target="_blank" href="http://twitter.com/share?text=<?php echo htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8'); ?>&amp;url=<?php the_permalink(); ?>&amp;via=<?php echo ($options['twitter_name']) ? $options['twitter_name'] : ""; ?>"> <i class="shout-icon-tweet shoutme-icon"></i> <span>
+      <li class="share_shout_tweet"> <a target="_blank" href="http://twitter.com/share?text=<?php echo htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8'); ?>&amp;url=<?php the_permalink(); ?>&amp;via=<?php echo ($options['twitter_name']) ? $options['twitter_name'] : ""; ?>"> <i class="shout-icon-tweet shoutme-icon"></i> <span>
         <?php 
 $obj = new shoutme_floatingshare(get_permalink( $post->ID ));  
 echo $obj->get_shout_tweets();
@@ -329,31 +303,24 @@ echo $obj->get_shout_tweets();
         </span> </a> </li>
       <?php }
 if($options['buffer'] == '1'){  ?>
-      <li class="share_shout_buffer"> 
-      
-      <a target="_blank" href="http://bufferapp.com/add?url=<?php the_permalink(); ?>&amp;text=<?php echo htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8'); ?>&amp;utm_source=<?php the_permalink(); ?>&amp;utm_medium=<?php the_permalink(); ?>&amp;utm_campaign=buffer&amp;source=button">
-      <!--<a href="http://bufferapp.com/add" target="_blank" class="buffer-add-button" data-count="horizontal" >-->
-   <span>
+      <li class="share_shout_buffer"> <a target="_blank" href="http://bufferapp.com/add?url=<?php the_permalink(); ?>&amp;text=<?php echo htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8'); ?>&amp;utm_source=<?php the_permalink(); ?>&amp;utm_medium=<?php the_permalink(); ?>&amp;utm_campaign=buffer&amp;source=button"> 
+        <!--<a href="http://bufferapp.com/add" target="_blank" class="buffer-add-button" data-count="horizontal" >--> 
+        <span>
         <?php 
 $obj = new shoutme_floatingshare(get_permalink( $post->ID ));  
 echo $obj->get_shout_buffer();
 ?>
-        </span> </a>
-    </li>
+        </span> </a> </li>
       <?php }
 if($options['pocket'] == '1'){  ?>
-      <li class="share_shout_pocket"> 
-      
-      <a target="_blank" href="https://getpocket.com/save?title=<?php echo get_the_title(); ?>&amp;url=<?php the_permalink(); ?>">
-      <!--<a href="http://bufferapp.com/add" target="_blank" class="buffer-add-button" data-count="horizontal" >-->
-   <span>
+      <li class="share_shout_pocket"> <a target="_blank" href="https://getpocket.com/save?title=<?php echo get_the_title(); ?>&amp;url=<?php the_permalink(); ?>"> 
+        <!--<a href="http://bufferapp.com/add" target="_blank" class="buffer-add-button" data-count="horizontal" >--> 
+        <span>
         <?php 
 $obj = new shoutme_floatingshare(get_permalink( $post->ID ));  
 echo $obj->get_shout_pocket();
 ?>
-        </span> </a>
-     
-    </li>
+        </span> </a> </li>
       <?php }
 
 if($options['pinterest'] == '1'){  ?>

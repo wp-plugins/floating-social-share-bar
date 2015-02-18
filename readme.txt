@@ -4,8 +4,8 @@ Contributors: denharsh
 Donate link: http://www.shoutmeloud.com/
 Tags: Social share, Social buttons, Social media share, social sharing, content sharing 
 Requires at least: 3.1
-Tested up to: 4.0
-Stable tag: 1.1
+Tested up to: 4.1
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,4 +35,12 @@ Create a support ticket at WordPress forum and I will take care of any issue.
 1. Plugin in action at post editor section.
 2. Plugin Settings page screenshot
 
+== Changelog ==
+
+= 2.0 =
+* Fixed breaking of floating buttons on certain theme
+* Now Supports mobile sharing buttons
+
+= 1.1 =
+* Code cleanup 
 
