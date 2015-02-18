@@ -2,10 +2,10 @@
 === Floating Social Share bar WordPress plugin ===
 Contributors: denharsh
 Donate link: http://www.shoutmeloud.com/
-Tags: Social share, Social buttons, Social media share, social sharing, content sharing 
+Tags: Social share, Social buttons, Social media share, social sharing, content sharing , Facebook like, floating share bar, Google+1, Pocket button, Social media sharing, social media buttons, twitter button, tweet button, responsive, mobile sharing, mobile buttons
 Requires at least: 3.1
 Tested up to: 4.1
-Stable tag: 2.0
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,8 @@ Floating Social Share bar WordPress plugin let you add social media sharing butt
 
 == Description ==
 
-Floating Social Share bar WordPress plugin let you add social media sharing buttons on your blog posts. This will help you to get more social media share as your social media sharing buttons will be displayed also when your readers are scrolling down your content. This plugin is integrated with all popular social media sharing buttons along with Pocket and LinkedIn.
+Floating Social Share bar WordPress plugin is a responsive social sharing plugin for WordPress. It lets you add floating social media share buttons with counter on your desktop site. Though the plugin is responsive, but it will not show on smaller screen to overlap the reading area.
+The latest version now offers mobile social sharing buttons which will be placed after the blog post. This is the same plugins which I’m using on my blog and perfect to increase your social media sharing of the blog. Social media sharing buttons will be displayed also when your readers are scrolling down your content. This plugin is integrated with all popular social media sharing buttons along with Pocket and LinkedIn.
 
 Credits: http://www.shoutmeloud.com
 
