@@ -74,7 +74,7 @@ function floating_social_buttons_option()
                     Pocket</li>
                   <li class="list-group-item list-group-item-info"><strong>Twitter ID:</strong></li>
                   <li class="list-group-item">
-                    <input id="plugin_settings[twitter_name]" name="plugin_settings[twitter_name]" type="text" value="<?php echo ($options['twitter_name']) ? $options['twitter_name'] : "";?>" />
+                    <input id="plugin_settings[twitter_name]" name="plugin_settings[twitter_name]" type="text" value="<?php echo ($options['twitter_name']) ? $options['twitter_name'] : "Shoutmeloud";?>" />
                     <br />
                     <br />
                     Note: Paste the ID Without ' @ ' Symbol </li>
@@ -90,8 +90,11 @@ function floating_social_buttons_option()
                   <li>NOTE : Dont add px in display settings</li>
                   <li class="list-group-item">Mobile view:
                     <input id="plugin_settings[mstatus]" name="plugin_settings[mstatus]" type="checkbox" value="1" <?php checked( '1', ($options['mstatus']) ? $options['mstatus'] : '' ); ?> />
-                    Active</li>
+                    Active</li>                           
                 </ul>
+                
+                
+                
                 <input type="submit" name="savesetting" class="btn btn-primary" value="Save Setting"/>
               </form>
             </div>
@@ -117,7 +120,7 @@ class="btn btn-primary" target="_blank">Read more</a> </div>
       </div>
     </div>
     <style>
-	.shoutme-socialicons a i {
+	.shoutme-socialicons a i { background-color:#fff !important;
    
     color: #000;
     font-size: 21px;
@@ -132,25 +135,25 @@ class="btn btn-primary" target="_blank">Read more</a> </div>
 }
 
 .shoutme-socialicons .fa-facebook:hover {
-    background: none repeat scroll 0% 0% #3B5998;
+    background-color:  #3B5998 !important;
 }
 
 .shoutme-socialicons .fa-twitter:hover {
-    background: none repeat scroll 0% 0% #00ABF0;
+    background-color:  #00ABF0 !important;
 }
 
 .shoutme-socialicons .fa-youtube:hover {
-    background: none repeat scroll 0% 0% #C3181E;
+    background-color:  #C3181E !important;
 }
 
 .shoutme-socialicons .fa-google-plus:hover {
-    background: none repeat scroll 0% 0% #D95232;
+    background-color:  #D95232 !important;
 }
 
 .shoutme-socialicons .fa-slideshare:hover {
-	background-color:#CD2B0E!important;
+	background-color:#CD2B0E !important;
 }
-.shoutme-socialicons .fa-linkedin:hover {background: #52a2cc;}
+.shoutme-socialicons .fa-linkedin:hover {background: #52a2cc !important;}
 
 
     </style>
@@ -159,6 +162,12 @@ class="btn btn-primary" target="_blank">Read more</a> </div>
 </div>
 <?php
 }
+
+function floating_social_buttons_admin_enqueue_style(){
+wp_register_style('floatingshare', plugins_url("/css/floatingshare.css", __FILE__), false,filemtime( plugin_dir_path( __FILE__ ) . "/css/floatingshare.css" ) );
+wp_enqueue_style('floatingshare');
+}
+add_action('in_admin_footer','floating_social_buttons_admin_enqueue_scripts');
 
 function floating_social_buttons_admin_enqueue_scripts(){
 
@@ -263,7 +272,7 @@ if(is_single()){
   <div class="sharing group sharing_social_count">
     <ul class="shoutme-post-social Shoutme_social_share_count">
       <?php if($options['facebook'] == '1'){  ?>
-      <li class="share_shout_fb"> <a href="http://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&amp;t=<?php echo htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8'); ?>" target="_blank"> <i class="shout-icon-fb shoutme-icon"></i> <span>
+      <li class="share_shout_fb"> <a href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink();?>&amp;t=<?php echo htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8'); ?>" target="_blank"> <i class="shout-icon-fb shoutme-icon"></i> <span>
         <?php 
 $obj=new shoutme_floatingshare(get_permalink( $post->ID ));  
 echo $obj->get_shout_fb();
@@ -345,6 +354,57 @@ if ( '' != get_the_post_thumbnail( $post->ID ) ) {
 }
 }
 
+function shoutme_floatingshare_dashboard_widget() {
+	$options = get_option( 'plugin_settings' );	
+     $rss = fetch_feed( 'http://www.shoutmeloud.com/feed' );
+  
+     if ( is_wp_error($rss) ) {
+          if ( is_admin() || current_user_can('manage_options') ) {
+               echo '<p>';
+               printf(__('<strong>RSS Error</strong>: %s'), $rss->get_error_message());
+               echo '</p>';
+          }
+     return;
+}
+  
+if ( !$rss->get_item_quantity() ) {
+     echo '<p>Apparently, there are no updates to show!</p>';
+     $rss->__destruct();
+     unset($rss);
+     return;
+}
+  
+echo "<ul>\n";
+  
+if ( !isset($items) )
+     $items = 5;
+  
+     foreach ( $rss->get_items(0, $items) as $item ) {
+          $publisher = '';
+          $site_link = '';
+          $link = '';
+          $content = '';
+          $date = '';
+          $link = esc_url( strip_tags( $item->get_link() ) );
+          $title = esc_html( $item->get_title() );
+          $content = $item->get_content();
+          $content = wp_html_excerpt($content, 100) . ' ...';
+  
+         echo "<li><a class='rsswidget' href='$link'>$title</a>\n<div class='rssSummary'>$content</div>\n";
+}
+  
+echo "</ul>\n";
+$rss->__destruct();
+unset($rss);
+}
+ 
+function shoutme_floatingshare_add_dashboard_widget() {
+     wp_add_dashboard_widget('shoutmeloud_dashboard_widget', 'Recent Posts from shoutmeloud.com', 'shoutme_floatingshare_dashboard_widget');
+}
+ 
+add_action('wp_dashboard_setup', 'shoutme_floatingshare_add_dashboard_widget');
+
+
 
 class shoutme_floatingshare
 {
@@ -368,9 +428,16 @@ return isset($json['data']['children']['0']['data']['ups'])?intval( @$json['data
 }
 
 function get_shout_fb() {
-$json_string = $this->file_get_contents_curl('http://api.facebook.com/restserver.php?method=links.getStats&format=json&urls='.$this->url);
+/*$json_string = $this->file_get_contents_curl('http://api.facebook.com/restserver.php?method=links.getStats&format=json&urls='.$this->url);
 $json = json_decode($json_string, true);
 return isset($json[0]['total_count'])?intval($json[0]['total_count']):0;
+*/
+
+$like_results = file_get_contents('http://graph.facebook.com/'. get_permalink());
+    $like_array = json_decode($like_results, true);
+    $like_count =  $like_array['shares'];
+    return ($like_count ) ? $like_count : "0";
+
 }
 
 

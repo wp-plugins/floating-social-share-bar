@@ -5,7 +5,7 @@ Donate link: http://www.shoutmeloud.com/
 Tags: Social share, Social buttons, Social media share, social sharing, content sharing , Facebook like, floating share bar, Google+1, Pocket button, Social media sharing, social media buttons, twitter button, tweet button, responsive, mobile sharing, mobile buttons
 Requires at least: 3.1
 Tested up to: 4.1
-Stable tag: 2.1
+Stable tag: 3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,6 +37,12 @@ Create a support ticket at WordPress forum and I will take care of any issue.
 2. Plugin Settings page screenshot
 
 == Changelog ==
+
+= 3.1 =
+* 21st February release
+* Fixed all bugs
+* Fixed Facebook share button bug
+* Code cleanup
 
 = 2.0 =
 * Fixed breaking of floating buttons on certain theme
