@@ -3,7 +3,7 @@
 * Plugin Name: Floating Share
 * Plugin URI: http://www.shoutmeloud.com/
 * Description: Floating Social Buttons Provide an easy way to add floating social sharing button.
-* Version: 1.1
+* Version: 3.1
 * Author: Harsh Agrawal		
 * Author URI: http://www.shoutmeloud.com/about
 * License: GPL2
