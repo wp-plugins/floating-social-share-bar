@@ -256,9 +256,9 @@ $content .= '</span> </a> </li>';
 $content .= '</ul>
   </div>
 </div>';
-return $content;  
 }
 }
+    return $content;
 }
 
 
